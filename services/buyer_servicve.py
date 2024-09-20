@@ -1,8 +1,11 @@
+from injector import inject
+
 from models.buyer import Buyer
 from database.repositories.buyer_repository import BuyerRepository
 
 
 class BuyerService:
+    @inject
     def __init__(self, buyer_repository: BuyerRepository):
         self.__buyer_repository = buyer_repository
 

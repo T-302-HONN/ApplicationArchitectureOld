@@ -1,21 +1,22 @@
 from logging.config import fileConfig
 
+from injector import Injector
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
-from infrastructure.container import Container
 
+from database.database import Database
+from infrastructure.app_module import AppModule
 from infrastructure.settings import Settings
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
 
-settings = Settings("./infrastructure/.env")
-container = Container()
-container.config.from_pydantic(settings)
-database = container.database()
+settings = Settings("./.env")
+container = Injector(AppModule(settings))
+database = container.get(Database)
 
 config.set_main_option("sqlalchemy.url", settings.db_connection)
 

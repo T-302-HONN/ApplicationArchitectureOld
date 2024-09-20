@@ -4,7 +4,7 @@ from models.merchant import Merchant
 
 
 class MerchantMapping(Mapping):
-    def create_table(self, metadata: MetaData) -> None:
+    def create_table(self, metadata: MetaData) -> Table:
         return Table(
             "merchant",
             metadata,

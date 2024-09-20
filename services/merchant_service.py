@@ -1,8 +1,11 @@
+from injector import inject
+
 from models.merchant import Merchant
 from database.repositories.merchant_repository import MerchantRepository
 
 
 class MerchantService:
+    @inject
     def __init__(self, merchant_repository: MerchantRepository) -> None:
         self.__merchant_repository = merchant_repository
 

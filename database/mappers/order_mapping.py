@@ -7,7 +7,7 @@ from sqlalchemy.orm import relationship
 
 
 class OrderMapping(Mapping):
-    def create_table(self, metadata: MetaData) -> None:
+    def create_table(self, metadata: MetaData) -> Table:
         return Table(
             "order",
             metadata,

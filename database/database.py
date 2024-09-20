@@ -1,14 +1,18 @@
 from typing import Callable, List
+
+from injector import inject
 from sqlalchemy import create_engine, orm
 from contextlib import contextmanager, AbstractContextManager
 from sqlalchemy.orm import Session, registry
 from database.mappers.mapping import Mapping
+from infrastructure.settings import Settings
 
 
 class Database:
-    def __init__(self, db_url: str, mappings: List[Mapping]) -> None:
+    @inject
+    def __init__(self, settings: Settings, mappings: List[Mapping]) -> None:
         self.__engine = create_engine(
-            db_url, echo=True
+            settings.db_connection, echo=True
         )
 
         self.__session_factory = orm.scoped_session(

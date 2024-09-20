@@ -1,8 +1,6 @@
-from dataclasses import dataclass
+from pydantic import BaseModel
 
-
-@dataclass
-class OrderDto:
+class OrderDto(BaseModel):
     description: str
     price: float
     merchant_id: int
