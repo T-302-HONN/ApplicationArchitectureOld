@@ -23,4 +23,4 @@ toml==0.10.2
 typing_extensions==4.3.0
 uvicorn==0.18.3
 watchfiles==0.17.0
-websockets==10.3
+websockets==17.4
